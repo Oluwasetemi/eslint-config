@@ -1,7 +1,7 @@
 {
   "name": "@setemiojo/eslint-config",
   "type": "module",
-  "version": "5.4.1",
+  "version": "5.4.2",
   "packageManager": "pnpm@10.17.0",
   "description": "Oluwasetemi's ESLint config",
   "author": "Oluwasetemi Ojo <setemiojo@gmail.com> (https://github.com/oluwasetemi/)",
