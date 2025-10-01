@@ -22,7 +22,9 @@
   },
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
-  "bin": "./bin/index.js",
+  "bin": {
+    "eslint-config": "bin/index.js"
+  },
   "files": [
     "bin",
     "dist"
