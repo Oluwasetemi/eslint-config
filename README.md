@@ -7,7 +7,7 @@ Forked from [Antfu's](https://github.com/antfu/eslint-config)
 - Designed to work with TypeScript, JSX, Vue, JSON, YAML, Toml, Markdown, etc. Out-of-box.
 - Opinionated, but [very customizable](#customization)
 - [ESLint Flat config](https://eslint.org/docs/latest/use/configure/configuration-files-new), compose easily!
-- Optional [React](#react), [Next.js](#nextjs), [Svelte](#svelte), [UnoCSS](#unocss), [Astro](#astro), [Solid](#solid) support
+- Optional [React](#react) (with auto-detection for TanStack Router, React Router v7, Remix), [Next.js](#nextjs), [Svelte](#svelte), [UnoCSS](#unocss), [Astro](#astro), [Solid](#solid) support
 - Optional [formatters](#formatters) support for formatting CSS, HTML, XML, etc.
 - **Style principle**: Minimal for reading, stable for diff, consistent
   - Sorted imports, dangling commas
@@ -286,9 +286,10 @@ export default setemiojo({
     quotes: 'single', // or 'double'
   },
 
-  // TypeScript and Vue are autodetected, you can also explicitly enable them:
+  // TypeScript, Vue, and React are autodetected, you can also explicitly enable them:
   typescript: true,
   vue: true,
+  react: true,
 
   // Disable jsonc and yaml support
   jsonc: false,
@@ -607,7 +608,12 @@ npm i -D eslint-plugin-format
 
 #### React
 
-To enable React support, you need to explicitly turn it on:
+React support is **automatically detected** when you have any of the following packages installed:
+
+- `react` / `react-dom` (standard React)
+- `@tanstack/react-router` / `@tanstack/start` (TanStack Router)
+
+Alternatively, you can explicitly enable it:
 
 ```js
 // eslint.config.js
@@ -617,6 +623,13 @@ export default setemiojo({
   react: true,
 })
 ```
+
+The config automatically detects and optimizes rules for popular React frameworks:
+
+- **Remix** (`@remix-run/dev`, `@remix-run/react`, etc.)
+- **React Router v7** (`@react-router/node`, `@react-router/react`, etc.)
+- **TanStack Router** (`@tanstack/react-router`, `@tanstack/start`)
+- **Next.js** (when used with `nextjs: true`)
 
 Running `npx eslint` should prompt you to install the required dependencies, otherwise, you can install them manually:
 
