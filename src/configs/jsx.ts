@@ -15,7 +15,7 @@ export async function jsx(options: OptionsJSX = {}): Promise<TypedFlatConfigItem
         },
       },
     },
-    name: 'antfu/jsx/setup',
+    name: 'setemiojo/jsx/setup',
     plugins: {},
     rules: {},
   }

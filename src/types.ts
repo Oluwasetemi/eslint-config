@@ -275,8 +275,8 @@ export interface OptionsConfig extends OptionsComponentExts, OptionsProjectType 
    * Disable some opinionated rules to Anthony's preference.
    *
    * Including:
-   * - `antfu/top-level-function`
-   * - `antfu/if-newline`
+   * - `setemiojo/top-level-function`
+   * - `setemiojo/if-newline`
    *
    * @default false
    */

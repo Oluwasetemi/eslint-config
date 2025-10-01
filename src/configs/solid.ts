@@ -31,7 +31,7 @@ export async function solid(
 
   return [
     {
-      name: 'antfu/solid/setup',
+      name: 'setemiojo/solid/setup',
       plugins: {
         solid: pluginSolid,
       },
@@ -48,7 +48,7 @@ export async function solid(
         },
         sourceType: 'module',
       },
-      name: 'antfu/solid/rules',
+      name: 'setemiojo/solid/rules',
       rules: {
         // reactivity
         'solid/components-return-once': 'warn',

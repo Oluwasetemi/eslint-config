@@ -70,7 +70,7 @@ export async function vue(
           watchEffect: 'readonly',
         },
       },
-      name: 'antfu/vue/setup',
+      name: 'setemiojo/vue/setup',
       plugins: {
         vue: pluginVue,
         ...a11y ? { 'vue-a11y': pluginVueA11y } : {},
@@ -91,7 +91,7 @@ export async function vue(
           sourceType: 'module',
         },
       },
-      name: 'antfu/vue/rules',
+      name: 'setemiojo/vue/rules',
       processor: sfcBlocks === false
         ? pluginVue.processors['.vue']
         : mergeProcessors([
@@ -119,8 +119,8 @@ export async function vue(
               ...pluginVue.configs['flat/recommended'].map(c => c.rules).reduce((acc, c) => ({ ...acc, ...c }), {}) as any,
             },
 
-        'antfu/no-top-level-await': 'off',
         'node/prefer-global/process': 'off',
+        'setemiojo/no-top-level-await': 'off',
         'ts/explicit-function-return-type': 'off',
 
         'vue/block-order': ['error', {

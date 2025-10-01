@@ -1,6 +1,6 @@
-import { antfu } from './src'
+import { setemiojo } from './src'
 
-export default antfu(
+export default setemiojo(
   {
     vue: {
       a11y: true,

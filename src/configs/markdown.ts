@@ -18,7 +18,7 @@ export async function markdown(
 
   return [
     {
-      name: 'antfu/markdown/setup',
+      name: 'setemiojo/markdown/setup',
       plugins: {
         markdown,
       },
@@ -26,7 +26,7 @@ export async function markdown(
     {
       files,
       ignores: [GLOB_MARKDOWN_IN_MARKDOWN],
-      name: 'antfu/markdown/processor',
+      name: 'setemiojo/markdown/processor',
       // `eslint-plugin-markdown` only creates virtual files for code blocks,
       // but not the markdown file itself. We use `eslint-merge-processors` to
       // add a pass-through processor for the markdown file itself.
@@ -40,7 +40,7 @@ export async function markdown(
       languageOptions: {
         parser: parserPlain,
       },
-      name: 'antfu/markdown/parser',
+      name: 'setemiojo/markdown/parser',
     },
     {
       files: [
@@ -54,11 +54,10 @@ export async function markdown(
           },
         },
       },
-      name: 'antfu/markdown/disables',
+      name: 'setemiojo/markdown/disables',
       rules: {
-        'antfu/no-top-level-await': 'off',
-
         'no-alert': 'off',
+
         'no-console': 'off',
         'no-labels': 'off',
         'no-lone-blocks': 'off',
@@ -67,8 +66,9 @@ export async function markdown(
         'no-unused-expressions': 'off',
         'no-unused-labels': 'off',
         'no-unused-vars': 'off',
-
         'node/prefer-global/process': 'off',
+
+        'setemiojo/no-top-level-await': 'off',
 
         'style/comma-dangle': 'off',
         'style/eol-last': 'off',

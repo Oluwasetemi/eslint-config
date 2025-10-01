@@ -40,25 +40,25 @@ export async function stylistic(
 
   return [
     {
-      name: 'antfu/stylistic/rules',
+      name: 'setemiojo/stylistic/rules',
       plugins: {
-        antfu: pluginAntfu,
+        setemiojo: pluginAntfu,
         style: pluginStylistic,
       },
       rules: {
         ...config.rules,
 
-        'antfu/consistent-chaining': 'error',
-        'antfu/consistent-list-newline': 'error',
+        'setemiojo/consistent-chaining': 'error',
+        'setemiojo/consistent-list-newline': 'error',
 
         ...(lessOpinionated
           ? {
               curly: ['error', 'all'],
             }
           : {
-              'antfu/curly': 'error',
-              'antfu/if-newline': 'error',
-              'antfu/top-level-function': 'error',
+              'setemiojo/curly': 'error',
+              'setemiojo/if-newline': 'error',
+              'setemiojo/top-level-function': 'error',
             }
         ),
 
