@@ -22,6 +22,13 @@ const ReactRouterPackages = [
   '@react-router/serve',
   '@react-router/dev',
 ]
+
+// add @tanstack/react-router @tanstack/start
+const TanstackPackages = [
+  '@tanstack/react-router',
+  '@tanstack/start',
+]
+
 const NextJsPackages = [
   'next',
 ]
@@ -66,6 +73,7 @@ export async function react(
   const isUsingRemix = RemixPackages.some(i => isPackageExists(i))
   const isUsingReactRouter = ReactRouterPackages.some(i => isPackageExists(i))
   const isUsingNext = NextJsPackages.some(i => isPackageExists(i))
+  const isUsingTanstack = TanstackPackages.some(i => isPackageExists(i))
 
   const plugins = pluginReact.configs.all.plugins
 
@@ -200,6 +208,37 @@ export async function react(
                     'clientAction',
                     'handle',
                     'shouldRevalidate',
+                  ]
+                : []),
+              ...(isUsingTanstack
+                ? [
+                    // TanStack Router exports
+                    'Route',
+                    'Link',
+                    'Outlet',
+                    'Await',
+                    'CatchBoundary',
+                    'CatchNotFound',
+                    'ClientOnly',
+                    'TanStackRouterDevtools',
+                    'createRoute',
+                    'createFileRoute',
+                    'createRootRoute',
+                    'createLazyRoute',
+                    'createRootRouteWithContext',
+                    'lazyRouteComponent',
+                    'getRouteApi',
+                    'createLink',
+                    'useRouterState',
+                    'useRouteContext',
+                    'useLoaderData',
+                    'HeadContent',
+                    'Scripts',
+                    // TanStack Start exports
+                    'createServerFn',
+                    'createClientOnlyFn',
+                    'createIsomorphicFn',
+                    'StartClient',
                   ]
                 : []),
             ],

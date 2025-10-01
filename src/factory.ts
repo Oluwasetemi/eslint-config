@@ -55,6 +55,13 @@ const VuePackages = [
   '@slidev/cli',
 ]
 
+const ReactPackages = [
+  'react',
+  'react-dom',
+  '@tanstack/react-router',
+  '@tanstack/start',
+]
+
 export const defaultPluginRenaming = {
   '@eslint-react': 'react',
   '@eslint-react/dom': 'react-dom',
@@ -94,7 +101,7 @@ export function setemiojo(
     jsx: enableJsx = true,
     nextjs: enableNextjs = false,
     pnpm: enableCatalogs = false, // TODO: smart detect
-    react: enableReact = false,
+    react: enableReact = ReactPackages.some(i => isPackageExists(i)),
     regexp: enableRegexp = true,
     solid: enableSolid = false,
     svelte: enableSvelte = false,
