@@ -26,6 +26,7 @@ import {
   sortTsconfig,
   stylistic,
   svelte,
+  tanstackRouter,
   test,
   toml,
   typescript,
@@ -236,6 +237,13 @@ export function setemiojo(
       ...typescriptOptions,
       overrides: getOverrides(options, 'react'),
       tsconfigPath,
+    }))
+  }
+
+  // Add TanStack Router if React is enabled and TanStack Router is detected
+  if (enableReact && isPackageExists('@tanstack/react-router')) {
+    configs.push(tanstackRouter({
+      overrides: getOverrides(options, 'tanstackRouter'),
     }))
   }
 

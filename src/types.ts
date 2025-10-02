@@ -400,9 +400,19 @@ export interface OptionsConfig extends OptionsComponentExts, OptionsProjectType 
    * - `eslint-plugin-react-hooks`
    * - `eslint-plugin-react-refresh`
    *
-   * @default false
+   * @default true
    */
   react?: boolean | OptionsOverrides
+
+  /**
+   * Enable TanStack Router rules.
+   *
+   * Requires installing:
+   * - `@tanstack/eslint-plugin-router`
+   *
+   * @default false
+   */
+  tanstackRouter?: boolean | OptionsOverrides
 
   /**
    * Enable nextjs rules.
@@ -497,6 +507,7 @@ export interface OptionsConfig extends OptionsComponentExts, OptionsProjectType 
     yaml?: TypedFlatConfigItem['rules']
     toml?: TypedFlatConfigItem['rules']
     react?: TypedFlatConfigItem['rules']
+    tanstackRouter?: TypedFlatConfigItem['rules']
     svelte?: TypedFlatConfigItem['rules']
   }
 }

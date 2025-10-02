@@ -6,6 +6,7 @@ export default setemiojo(
       a11y: true,
     },
     react: true,
+    tanstackRouter: true,
     solid: true,
     svelte: true,
     astro: true,

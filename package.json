@@ -118,6 +118,7 @@
     "@eslint-community/eslint-plugin-eslint-comments": "catalog:prod",
     "@eslint/markdown": "catalog:prod",
     "@stylistic/eslint-plugin": "catalog:prod",
+    "@tanstack/eslint-plugin-router": "catalog:peer",
     "@typescript-eslint/eslint-plugin": "catalog:prod",
     "@typescript-eslint/parser": "catalog:prod",
     "@vitest/eslint-plugin": "catalog:prod",
@@ -151,12 +152,12 @@
     "yaml-eslint-parser": "catalog:prod"
   },
   "devDependencies": {
-    "@antfu/eslint-config": "workspace:*",
     "@antfu/ni": "catalog:dev",
     "@eslint-react/eslint-plugin": "catalog:peer",
     "@eslint/config-inspector": "catalog:dev",
     "@next/eslint-plugin-next": "catalog:peer",
     "@prettier/plugin-xml": "catalog:peer",
+    "@setemiojo/eslint-config": "workspace:*",
     "@types/eslint-plugin-jsx-a11y": "catalog:dev",
     "@types/node": "catalog:dev",
     "@unocss/eslint-plugin": "catalog:peer",

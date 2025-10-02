@@ -1,4 +1,4 @@
-import { setemiojo } from './src'
+import { setemiojo } from '../src'
 
 export default setemiojo(
   {
