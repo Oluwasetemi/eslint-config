@@ -64,6 +64,9 @@ catalogs:
     '@prettier/plugin-xml':
       specifier: ^3.4.2
       version: 3.4.2
+    '@tanstack/eslint-plugin-router':
+      specifier: ^1.132.31
+      version: 1.132.31
     '@unocss/eslint-plugin':
       specifier: ^66.5.1
       version: 66.5.1
@@ -241,6 +244,9 @@ importers:
       '@stylistic/eslint-plugin':
         specifier: catalog:prod
         version: 5.4.0(eslint@9.36.0(jiti@2.5.1))
+      '@tanstack/eslint-plugin-router':
+        specifier: catalog:peer
+        version: 1.132.31(eslint@9.36.0(jiti@2.5.1))(typescript@5.9.2)
       '@typescript-eslint/eslint-plugin':
         specifier: catalog:prod
         version: 8.44.1(@typescript-eslint/parser@8.44.1(eslint@9.36.0(jiti@2.5.1))(typescript@5.9.2))(eslint@9.36.0(jiti@2.5.1))(typescript@5.9.2)
@@ -353,9 +359,6 @@ importers:
       '@setemiojo/eslint-config':
         specifier: workspace:*
         version: 'link:'
-      '@tanstack/eslint-plugin-router':
-        specifier: ^1.132.31
-        version: 1.132.31(eslint@9.36.0(jiti@2.5.1))(typescript@5.9.2)
       '@types/eslint-plugin-jsx-a11y':
         specifier: catalog:dev
         version: 6.10.0
