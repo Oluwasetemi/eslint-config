@@ -161,6 +161,7 @@
     "@next/eslint-plugin-next": "catalog:peer",
     "@prettier/plugin-xml": "catalog:peer",
     "@setemiojo/eslint-config": "workspace:*",
+    "@tanstack/eslint-plugin-router": "catalog:peer",
     "@types/eslint-plugin-jsx-a11y": "catalog:dev",
     "@types/node": "catalog:dev",
     "@unocss/eslint-plugin": "catalog:peer",
