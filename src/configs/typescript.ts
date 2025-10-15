@@ -193,7 +193,7 @@ export async function typescript(
     ...erasableOnly
       ? [
           {
-            name: 'antfu/typescript/erasable-syntax-only',
+            name: 'setemiojo/typescript/erasable-syntax-only',
             plugins: {
               'erasable-syntax-only': await interopDefault(import('eslint-plugin-erasable-syntax-only')),
             },
