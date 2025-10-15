@@ -89,6 +89,13 @@ export async function react(
         'react-refresh': pluginReactRefresh,
         'react-web-api': plugins['@eslint-react/web-api'],
       },
+      settings: {
+        // Enhanced settings for eslint-plugin-react-hooks 7.0.0
+        'react-hooks': {
+          // Support for additional effect hooks (custom hooks that behave like useEffect)
+          additionalEffectHooks: '(useMyEffect|useCustomEffect|useLayoutEffect)',
+        },
+      },
     },
     {
       files,
@@ -164,6 +171,10 @@ export async function react(
         // recommended rules eslint-plugin-react-hooks https://github.com/facebook/react/tree/main/packages/eslint-plugin-react-hooks/src/rules
         'react-hooks/exhaustive-deps': 'warn',
         'react-hooks/rules-of-hooks': 'error',
+
+        // New rules in eslint-plugin-react-hooks 7.0.0
+        'react-hooks/component-hook-factories': 'warn',
+        'react-hooks/use-memo': 'warn',
 
         // recommended rules from eslint-plugin-react-hooks-extra https://eslint-react.xyz/docs/rules/overview#hooks-extra-rules
         'react-hooks-extra/no-direct-set-state-in-use-effect': 'warn',

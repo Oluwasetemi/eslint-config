@@ -634,8 +634,14 @@ The config automatically detects and optimizes rules for popular React framework
 Running `npx eslint` should prompt you to install the required dependencies, otherwise, you can install them manually:
 
 ```bash
-npm i -D @eslint-react/eslint-plugin eslint-plugin-react-hooks eslint-plugin-react-refresh
+npm i -D @eslint-react/eslint-plugin eslint-plugin-react-hooks@^7.0.0 eslint-plugin-react-refresh
 ```
+
+> [!NOTE]
+> This config uses `eslint-plugin-react-hooks` version 7.0.0+ which includes enhanced React Compiler support and new rules for better React development practices, including:
+>
+> - `react-hooks/component-hook-factories`: Prevents factory functions for components and hooks
+> - `react-hooks/use-memo`: Ensures proper useMemo usage
 
 #### Next.js
 
