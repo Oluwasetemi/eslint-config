@@ -201,7 +201,6 @@ export function setemiojo(
       ...typescriptOptions,
       componentExts,
       overrides: getOverrides(options, 'typescript'),
-      tanstackRouter: enableReact && enableTanstackRouter && isPackageExists('@tanstack/react-router'),
       type: options.type,
     }))
   }
@@ -243,7 +242,7 @@ export function setemiojo(
   }
 
   // Add TanStack Router if React is enabled and TanStack Router is detected
-  if (enableReact && isPackageExists('@tanstack/react-router')) {
+  if (enableReact && enableTanstackRouter && isPackageExists('@tanstack/react-router')) {
     configs.push(tanstackRouter({
       ...typescriptOptions,
       overrides: getOverrides(options, 'tanstackRouter'),
