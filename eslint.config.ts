@@ -11,7 +11,9 @@ export default setemiojo(
     svelte: true,
     astro: true,
     nextjs: true,
-    typescript: true,
+    typescript: {
+      erasableOnly: true,
+    },
     formatters: true,
     pnpm: true,
     type: 'lib',

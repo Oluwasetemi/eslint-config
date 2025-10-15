@@ -1,8 +1,8 @@
 {
   "name": "@setemiojo/eslint-config",
   "type": "module",
-  "version": "5.4.3",
-  "packageManager": "pnpm@10.17.0",
+  "version": "6.0.0",
+  "packageManager": "pnpm@10.18.3",
   "description": "Oluwasetemi's ESLint config",
   "author": "Oluwasetemi Ojo <setemiojo@gmail.com> (https://github.com/oluwasetemi/)",
   "license": "MIT",
@@ -169,6 +169,7 @@
     "bumpp": "catalog:dev",
     "eslint": "catalog:peer",
     "eslint-plugin-astro": "catalog:peer",
+    "eslint-plugin-erasable-syntax-only": "catalog:peer",
     "eslint-plugin-format": "catalog:peer",
     "eslint-plugin-jsx-a11y": "catalog:peer",
     "eslint-plugin-react-hooks": "catalog:peer",
