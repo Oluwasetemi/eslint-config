@@ -64,6 +64,10 @@ export const frameworkOptions: PromItem<FrameworkOption>[] = [
     value: 'react',
   },
   {
+    label: c.cyan('TanStack'),
+    value: 'tanstack',
+  },
+  {
     label: c.red('Svelte'),
     value: 'svelte',
   },
@@ -125,6 +129,9 @@ export const dependenciesMap = {
   svelte: [
     'eslint-plugin-svelte',
     'svelte-eslint-parser',
+  ],
+  tanstack: [
+    '@tanstack/eslint-plugin-router',
   ],
   unocss: [
     '@unocss/eslint-plugin',
