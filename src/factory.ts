@@ -90,7 +90,7 @@ export const defaultPluginRenaming = {
  *  The merged ESLint configurations.
  */
 export function setemiojo(
-  options: OptionsConfig & Omit<TypedFlatConfigItem, 'files'> = {},
+  options: OptionsConfig & Omit<TypedFlatConfigItem, 'files' | 'ignores'> = {},
   ...userConfigs: Awaitable<TypedFlatConfigItem | TypedFlatConfigItem[] | FlatConfigComposer<any, any> | Linter.Config[]>[]
 ): FlatConfigComposer<TypedFlatConfigItem, ConfigNames> {
   const {
@@ -98,6 +98,7 @@ export function setemiojo(
     autoRenamePlugins = true,
     componentExts = [],
     gitignore: enableGitignore = true,
+    ignores: userIgnore = [],
     imports: enableImports = true,
     jsx: enableJsx = true,
     nextjs: enableNextjs = false,
@@ -152,7 +153,7 @@ export function setemiojo(
 
   // Base configs
   configs.push(
-    ignores(options.ignores),
+    ignores(userIgnore),
     javascript({
       isInEditor,
       overrides: getOverrides(options, 'javascript'),

@@ -10,9 +10,14 @@ export default setemiojo(
     solid: true,
     svelte: true,
     astro: true,
-    nextjs: true,
+    nextjs: false,
     typescript: {
       erasableOnly: true,
+    },
+    markdown: {
+      overrides: {
+        'no-dupe-keys': 'off',
+      },
     },
     formatters: true,
     pnpm: true,
