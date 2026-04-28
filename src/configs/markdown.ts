@@ -85,7 +85,6 @@ export async function markdown(
       rules: {
         'e18e/prefer-static-regex': 'off',
 
-
         'no-alert': 'off',
 
         'no-console': 'off',
