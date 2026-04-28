@@ -86,3 +86,4 @@ _fixtures
 src/typegen.d.ts
 .eslint-config-inspector
 .claude
+docs
