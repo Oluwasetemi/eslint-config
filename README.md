@@ -1,6 +1,8 @@
 # @setemiojo/eslint-config
 
-Forked from [Antfu's](https://github.com/antfu/eslint-config)
+[![npm](https://img.shields.io/npm/v/@setemiojo/eslint-config?color=444&label=)](https://npmjs.com/package/@setemiojo/eslint-config)
+
+> Forked from [@antfu/eslint-config](https://github.com/antfu/eslint-config)
 
 - Auto fix for formatting (aimed to be used standalone **without** Prettier)
 - Reasonable defaults, best practices, only one line of config
@@ -555,10 +557,10 @@ export default setemiojo({
 
 ### Config Composer
 
-Since v2.10.0, the factory function `setemiojo()` returns a [`FlatConfigComposer` object from `eslint-flat-config-utils`](https://github.com/oluwasetemi/eslint-flat-config-utils#composer) where you can chain the methods to compose the config even more flexibly.
+Since v2.10.0, the factory function `setemiojo()` returns a [`FlatConfigComposer` object from `eslint-flat-config-utils`](https://github.com/antfu/eslint-flat-config-utils#composer) where you can chain the methods to compose the config even more flexibly.
 
 ```js
-// eslint.config.jsdoc
+// eslint.config.js
 import setemiojo from '@setemiojo/eslint-config'
 
 export default setemiojo()
@@ -639,7 +641,7 @@ We provide some optional configs for specific use cases, that we don't include t
 
 #### Formatters
 
-Use external formatters to format files that ESLint cannot handle yet (`.css`, `.html`, etc). Powered by [`eslint-plugin-format`](https://github.com/oluwasetemi/eslint-plugin-format).
+Use external formatters to format files that ESLint cannot handle yet (`.css`, `.html`, etc). Powered by [`eslint-plugin-format`](https://github.com/antfu/eslint-plugin-format).
 
 ```js
 // eslint.config.js
@@ -830,7 +832,7 @@ This config also provides some optional plugins/rules for extended usage.
 
 #### `command`
 
-Powered by [`eslint-plugin-command`](https://github.com/oluwasetemi/eslint-plugin-command). It is not a typical rule for linting, but an on-demand micro-codemod tool that triggers by specific comments.
+Powered by [`eslint-plugin-command`](https://github.com/antfu/eslint-plugin-command). It is not a typical rule for linting, but an on-demand micro-codemod tool that triggers by specific comments.
 
 For a few triggers, for example:
 
@@ -839,7 +841,7 @@ For a few triggers, for example:
 - `/// to-for-each` - converts a for-in/for-of loop to `.forEach()`
 - `/// to-for-of` - converts a `.forEach()` to a for-of loop
 - `/// keep-sorted` - sorts an object/array/interface
-- ... etc. - refer to the [documentation](https://github.com/oluwasetemi/eslint-plugin-command#built-in-commands)
+- ... etc. - refer to the [documentation](https://github.com/antfu/eslint-plugin-command#built-in-commands)
 
 You can add the trigger comment one line above the code you want to transform, for example (note the triple slash):
 
@@ -966,7 +968,7 @@ If you enjoy this code style, and would like to mention it in your project, here
 
 ### Prettier?
 
-[Why I don't use Prettier](https://setemiojo.me/posts/why-not-prettier)
+[Why I don't use Prettier](https://antfu.me/posts/why-not-prettier)
 
 Well, you can still use Prettier to format files that are not supported well by ESLint yet, such as `.css`, `.html`, etc. See [formatters](#formatters) for more details.
 
@@ -1005,6 +1007,9 @@ Sure, you can configure and override rules locally in your project to fit your n
 ## Check Also
 
 - [oluwasetemi/dotfiles](https://github.com/oluwasetemi/dotfiles) - My dotfiles
+- [antfu/vscode-settings](https://github.com/antfu/vscode-settings) - Antfu's VS Code settings
+- [antfu/starter-ts](https://github.com/antfu/starter-ts) - Starter template for TypeScript library
+- [antfu/vitesse](https://github.com/antfu/vitesse) - Starter template for Vue & Vite app
 
 ## License
 
