@@ -1,15 +1,71 @@
 [
-  "<ignored>",
-  "<ignored>",
   {
-    "name": "antfu/javascript/rules",
+    "ignores": [
+      "**/node_modules",
+      "**/dist",
+      "**/package-lock.json",
+      "**/yarn.lock",
+      "**/pnpm-lock.yaml",
+      "**/bun.lockb",
+      "**/output",
+      "**/coverage",
+      "**/temp",
+      "**/.temp",
+      "**/tmp",
+      "**/.tmp",
+      "**/.history",
+      "**/.vitepress/cache",
+      "**/.nuxt",
+      "**/.next",
+      "**/.svelte-kit",
+      "**/.vercel",
+      "**/.changeset",
+      "**/.idea",
+      "**/.cache",
+      "**/.output",
+      "**/.vite-inspect",
+      "**/.yarn",
+      "**/CHANGELOG*.md",
+      "**/LICENSE*",
+      "**/*.min.*",
+      "**/__snapshots__",
+      "**/vite.config.*.timestamp-*",
+      "**/auto-import?(s).d.ts",
+      "**/components.d.ts",
+      "**/.context",
+      "**/.claude",
+      "**/.agents",
+      "**/.*/skills",
+      "**/*.?([cm])ts",
+      "**/*.?([cm])tsx",
+    ],
+    "name": "setemiojo/ignores",
+  },
+  {
+    "languageOptions": {
+      "ecmaVersion": "latest",
+      "parserOptions": {
+        "ecmaFeatures": {
+          "jsx": true,
+        },
+        "ecmaVersion": "latest",
+        "sourceType": "module",
+      },
+      "sourceType": "module",
+    },
+    "linterOptions": {
+      "reportUnusedDisableDirectives": true,
+    },
+    "name": "setemiojo/javascript/setup",
+  },
+  {
+    "name": "setemiojo/javascript/rules",
     "plugins": [
       "antfu",
       "unused-imports",
     ],
     "rules": [
       "accessor-pairs",
-      "antfu/no-top-level-await",
       "array-callback-return",
       "block-scoped-var",
       "constructor-super",
@@ -108,6 +164,7 @@
       "prefer-rest-params",
       "prefer-spread",
       "prefer-template",
+      "setemiojo/no-top-level-await",
       "symbol-description",
       "unicode-bom",
       "unused-imports/no-unused-imports",
@@ -119,7 +176,7 @@
     ],
   },
   {
-    "name": "antfu/eslint-comments/rules",
+    "name": "setemiojo/eslint-comments/rules",
     "plugins": [
       "eslint-comments",
     ],
@@ -131,7 +188,7 @@
     ],
   },
   {
-    "name": "antfu/command/rules",
+    "name": "setemiojo/command/rules",
     "plugins": [
       "command",
     ],
@@ -140,7 +197,7 @@
     ],
   },
   {
-    "name": "antfu/perfectionist/setup",
+    "name": "setemiojo/perfectionist/setup",
     "plugins": [
       "perfectionist",
     ],
@@ -152,7 +209,7 @@
     ],
   },
   {
-    "name": "antfu/e18e/rules",
+    "name": "setemiojo/e18e/rules",
     "plugins": [
       "e18e",
     ],
@@ -179,10 +236,10 @@
     "files": [
       "**/scripts/**/*.?([cm])[jt]s?(x)",
     ],
-    "name": "antfu/disables/scripts",
+    "name": "setemiojo/disables/scripts",
     "rules": [
-      "- antfu/no-top-level-await",
       "- no-console",
+      "- setemiojo/no-top-level-await",
       "- ts/explicit-function-return-type",
     ],
   },
@@ -191,10 +248,10 @@
       "**/cli/**/*.?([cm])[jt]s?(x)",
       "**/cli.?([cm])[jt]s?(x)",
     ],
-    "name": "antfu/disables/cli",
+    "name": "setemiojo/disables/cli",
     "rules": [
-      "- antfu/no-top-level-await",
       "- no-console",
+      "- setemiojo/no-top-level-await",
     ],
   },
   {
@@ -202,17 +259,17 @@
       "**/bin/**/*",
       "**/bin.?([cm])[jt]s?(x)",
     ],
-    "name": "antfu/disables/bin",
+    "name": "setemiojo/disables/bin",
     "rules": [
-      "- antfu/no-import-dist",
-      "- antfu/no-import-node-modules-by-path",
+      "- setemiojo/no-import-dist",
+      "- setemiojo/no-import-node-modules-by-path",
     ],
   },
   {
     "files": [
       "**/*.d.?([cm])ts",
     ],
-    "name": "antfu/disables/dts",
+    "name": "setemiojo/disables/dts",
     "rules": [
       "- eslint-comments/no-unlimited-disable",
       "- no-restricted-syntax",
@@ -224,7 +281,7 @@
       "**/*.js",
       "**/*.cjs",
     ],
-    "name": "antfu/disables/cjs",
+    "name": "setemiojo/disables/cjs",
     "rules": [
       "- ts/no-require-imports",
     ],
@@ -234,10 +291,10 @@
       "**/*.config.?([cm])[jt]s?(x)",
       "**/*.config.*.?([cm])[jt]s?(x)",
     ],
-    "name": "antfu/disables/config-files",
+    "name": "setemiojo/disables/config-files",
     "rules": [
-      "- antfu/no-top-level-await",
       "- no-console",
+      "- setemiojo/no-top-level-await",
       "- ts/explicit-function-return-type",
     ],
   },

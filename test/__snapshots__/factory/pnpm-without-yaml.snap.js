@@ -1,16 +1,112 @@
 [
-  "<ignored>",
-  "<ignored>",
-  "<ignored>",
   {
-    "name": "antfu/javascript/rules",
+    "ignores": [
+      "**/logs",
+      "**/*.log",
+      "**/npm-debug.log*",
+      "**/yarn-debug.log*",
+      "**/yarn-error.log*",
+      "**/pids",
+      "**/*.pid",
+      "**/*.seed",
+      "**/*.pid.lock",
+      "**/lib-cov",
+      "**/coverage",
+      "**/.nyc_output",
+      "**/.grunt",
+      "**/bower_components",
+      "**/.lock-wscript",
+      "build/Release",
+      "**/node_modules/",
+      "**/jspm_packages/",
+      "**/typings/",
+      "**/.npm",
+      "**/.eslintcache",
+      "**/.node_repl_history",
+      "**/*.tgz",
+      "**/.yarn-integrity",
+      "**/.env",
+      "**/.cache",
+      "**/.next",
+      "**/.nuxt",
+      "**/dist",
+      "**/.serverless",
+      "**/.idea",
+      "**/*.lerna_backup",
+      "**/_fixtures",
+      "**/.temp",
+      "**/.history",
+      "src/typegen.d.ts",
+      "**/.eslint-config-inspector",
+      "**/.claude",
+    ],
+    "name": "setemiojo/gitignore",
+  },
+  {
+    "ignores": [
+      "**/node_modules",
+      "**/dist",
+      "**/package-lock.json",
+      "**/yarn.lock",
+      "**/pnpm-lock.yaml",
+      "**/bun.lockb",
+      "**/output",
+      "**/coverage",
+      "**/temp",
+      "**/.temp",
+      "**/tmp",
+      "**/.tmp",
+      "**/.history",
+      "**/.vitepress/cache",
+      "**/.nuxt",
+      "**/.next",
+      "**/.svelte-kit",
+      "**/.vercel",
+      "**/.changeset",
+      "**/.idea",
+      "**/.cache",
+      "**/.output",
+      "**/.vite-inspect",
+      "**/.yarn",
+      "**/CHANGELOG*.md",
+      "**/LICENSE*",
+      "**/*.min.*",
+      "**/__snapshots__",
+      "**/vite.config.*.timestamp-*",
+      "**/auto-import?(s).d.ts",
+      "**/components.d.ts",
+      "**/.context",
+      "**/.claude",
+      "**/.agents",
+      "**/.*/skills",
+    ],
+    "name": "setemiojo/ignores",
+  },
+  {
+    "languageOptions": {
+      "ecmaVersion": "latest",
+      "parserOptions": {
+        "ecmaFeatures": {
+          "jsx": true,
+        },
+        "ecmaVersion": "latest",
+        "sourceType": "module",
+      },
+      "sourceType": "module",
+    },
+    "linterOptions": {
+      "reportUnusedDisableDirectives": true,
+    },
+    "name": "setemiojo/javascript/setup",
+  },
+  {
+    "name": "setemiojo/javascript/rules",
     "plugins": [
       "antfu",
       "unused-imports",
     ],
     "rules": [
       "accessor-pairs",
-      "antfu/no-top-level-await",
       "array-callback-return",
       "block-scoped-var",
       "constructor-super",
@@ -109,6 +205,7 @@
       "prefer-rest-params",
       "prefer-spread",
       "prefer-template",
+      "setemiojo/no-top-level-await",
       "symbol-description",
       "unicode-bom",
       "unused-imports/no-unused-imports",
@@ -120,7 +217,7 @@
     ],
   },
   {
-    "name": "antfu/eslint-comments/rules",
+    "name": "setemiojo/eslint-comments/rules",
     "plugins": [
       "eslint-comments",
     ],
@@ -132,7 +229,7 @@
     ],
   },
   {
-    "name": "antfu/command/rules",
+    "name": "setemiojo/command/rules",
     "plugins": [
       "command",
     ],
@@ -141,7 +238,7 @@
     ],
   },
   {
-    "name": "antfu/perfectionist/setup",
+    "name": "setemiojo/perfectionist/setup",
     "plugins": [
       "perfectionist",
     ],
@@ -153,7 +250,7 @@
     ],
   },
   {
-    "name": "antfu/node/setup",
+    "name": "setemiojo/node/setup",
     "plugins": [
       "node",
     ],
@@ -162,7 +259,7 @@
     "files": [
       "**/*.?([cm])[jt]s?(x)",
     ],
-    "name": "antfu/node/rules",
+    "name": "setemiojo/node/rules",
     "rules": [
       "node/handle-callback-err",
       "node/no-deprecated-api",
@@ -175,7 +272,7 @@
     ],
   },
   {
-    "name": "antfu/jsdoc/setup",
+    "name": "setemiojo/jsdoc/setup",
     "plugins": [
       "jsdoc",
     ],
@@ -184,7 +281,7 @@
     "files": [
       "**/*.?([cm])[jt]s?(x)",
     ],
-    "name": "antfu/jsdoc/rules",
+    "name": "setemiojo/jsdoc/rules",
     "rules": [
       "jsdoc/check-access",
       "jsdoc/check-param-names",
@@ -206,25 +303,25 @@
     ],
   },
   {
-    "name": "antfu/imports/rules",
+    "name": "setemiojo/imports/rules",
     "plugins": [
-      "antfu",
       "import",
+      "setemiojo",
     ],
     "rules": [
-      "antfu/import-dedupe",
-      "antfu/no-import-dist",
-      "antfu/no-import-node-modules-by-path",
       "import/consistent-type-specifier-style",
       "import/first",
       "import/no-duplicates",
       "import/no-mutable-exports",
       "import/no-named-default",
+      "setemiojo/import-dedupe",
+      "setemiojo/no-import-dist",
+      "setemiojo/no-import-node-modules-by-path",
       "import/newline-after-import",
     ],
   },
   {
-    "name": "antfu/e18e/rules",
+    "name": "setemiojo/e18e/rules",
     "plugins": [
       "e18e",
     ],
@@ -248,7 +345,7 @@
     ],
   },
   {
-    "name": "antfu/unicorn/rules",
+    "name": "setemiojo/unicorn/rules",
     "plugins": [
       "unicorn",
     ],
@@ -282,14 +379,14 @@
         },
       },
     },
-    "name": "antfu/jsx/setup",
+    "name": "setemiojo/jsx/setup",
     "plugins": [],
     "rules": [],
   },
   {
-    "name": "antfu/typescript/setup",
+    "name": "setemiojo/typescript/setup",
     "plugins": [
-      "antfu",
+      "setemiojo",
       "ts",
     ],
   },
@@ -308,7 +405,7 @@
         "sourceType": "module",
       },
     },
-    "name": "antfu/typescript/parser",
+    "name": "setemiojo/typescript/parser",
   },
   {
     "files": [
@@ -316,7 +413,7 @@
       "**/*.?([cm])tsx",
       "**/*.vue",
     ],
-    "name": "antfu/typescript/rules",
+    "name": "setemiojo/typescript/rules",
     "rules": [
       "- constructor-super",
       "- getter-return",
@@ -384,9 +481,9 @@
     ],
   },
   {
-    "name": "antfu/stylistic/rules",
+    "name": "setemiojo/stylistic/rules",
     "plugins": [
-      "antfu",
+      "setemiojo",
       "style",
     ],
     "rules": [
@@ -455,15 +552,15 @@
       "style/jsx-quotes",
       "style/jsx-tag-spacing",
       "style/jsx-wrap-multilines",
-      "antfu/consistent-list-newline",
-      "antfu/consistent-chaining",
-      "antfu/curly",
-      "antfu/if-newline",
-      "antfu/top-level-function",
+      "setemiojo/consistent-list-newline",
+      "setemiojo/consistent-chaining",
+      "setemiojo/curly",
+      "setemiojo/if-newline",
+      "setemiojo/top-level-function",
     ],
   },
   {
-    "name": "antfu/regexp/rules",
+    "name": "setemiojo/regexp/rules",
     "plugins": [
       "regexp",
     ],
@@ -538,7 +635,7 @@
     ],
   },
   {
-    "name": "antfu/test/setup",
+    "name": "setemiojo/test/setup",
     "plugins": [
       "test",
     ],
@@ -551,7 +648,7 @@
       "**/*.bench.?([cm])[jt]s?(x)",
       "**/*.benchmark.?([cm])[jt]s?(x)",
     ],
-    "name": "antfu/test/rules",
+    "name": "setemiojo/test/rules",
     "rules": [
       "test/consistent-test-it",
       "test/no-identical-title",
@@ -559,16 +656,16 @@
       "test/no-only-tests",
       "test/prefer-hooks-in-order",
       "test/prefer-lowercase-title",
-      "- antfu/no-top-level-await",
       "- e18e/prefer-static-regex",
       "- no-unused-expressions",
       "- node/prefer-global/process",
+      "- setemiojo/no-top-level-await",
       "- ts/explicit-function-return-type",
     ],
   },
   {
     "languageOptions": {},
-    "name": "antfu/vue/setup",
+    "name": "setemiojo/vue/setup",
     "plugins": [
       "vue",
     ],
@@ -589,7 +686,7 @@
         "sourceType": "module",
       },
     },
-    "name": "antfu/vue/rules",
+    "name": "setemiojo/vue/rules",
     "processor": "merged-processor:eslint-plugin-vue+eslint-processor-vue-blocks",
     "rules": [
       "vue/comment-directive",
@@ -710,8 +807,8 @@
       "- vue/no-v-html",
       "vue/order-in-components",
       "vue/this-in-template",
-      "- antfu/no-top-level-await",
       "- node/prefer-global/process",
+      "- setemiojo/no-top-level-await",
       "- ts/explicit-function-return-type",
       "vue/component-name-in-template-casing",
       "vue/component-options-name-casing",
@@ -757,7 +854,7 @@
     ],
   },
   {
-    "name": "antfu/jsonc/setup",
+    "name": "setemiojo/jsonc/setup",
     "plugins": [
       "jsonc",
     ],
@@ -769,7 +866,7 @@
       "**/*.jsonc",
     ],
     "language": "jsonc/x",
-    "name": "antfu/jsonc/rules",
+    "name": "setemiojo/jsonc/rules",
     "rules": [
       "jsonc/no-bigint-literals",
       "jsonc/no-binary-expression",
@@ -813,7 +910,7 @@
     "files": [
       "**/package.json",
     ],
-    "name": "antfu/sort/package-json",
+    "name": "setemiojo/sort/package-json",
     "rules": [
       "jsonc/sort-array-values",
       "jsonc/sort-keys",
@@ -824,7 +921,7 @@
       "**/[jt]sconfig.json",
       "**/[jt]sconfig.*.json",
     ],
-    "name": "antfu/sort/tsconfig-json",
+    "name": "setemiojo/sort/tsconfig-json",
     "rules": [
       "jsonc/sort-keys",
     ],
@@ -835,7 +932,7 @@
       "**/package.json",
     ],
     "language": "jsonc/x",
-    "name": "antfu/pnpm/package-json",
+    "name": "setemiojo/pnpm/package-json",
     "plugins": [
       "pnpm",
     ],
@@ -846,7 +943,7 @@
     ],
   },
   {
-    "name": "antfu/toml/setup",
+    "name": "setemiojo/toml/setup",
     "plugins": [
       "toml",
     ],
@@ -858,7 +955,7 @@
     "languageOptions": {
       "parser": "toml-eslint-parser",
     },
-    "name": "antfu/toml/rules",
+    "name": "setemiojo/toml/rules",
     "rules": [
       "- style/spaced-comment",
       "toml/comma-style",
@@ -883,7 +980,7 @@
     ],
   },
   {
-    "name": "antfu/markdown/setup",
+    "name": "setemiojo/markdown/setup",
     "plugins": [
       "markdown",
     ],
@@ -895,7 +992,7 @@
     "ignores": [
       "**/*.md/*.md",
     ],
-    "name": "antfu/markdown/processor",
+    "name": "setemiojo/markdown/processor",
     "processor": "merged-processor:@eslint/markdown/markdown+pass-through",
   },
   {
@@ -903,13 +1000,13 @@
       "**/*.md",
     ],
     "language": "markdown/gfm",
-    "name": "antfu/markdown/parser",
+    "name": "setemiojo/markdown/parser",
   },
   {
     "files": [
       "**/*.md",
     ],
-    "name": "antfu/markdown/rules",
+    "name": "setemiojo/markdown/rules",
     "rules": [
       "- markdown/fenced-code-language",
       "markdown/heading-increment",
@@ -934,7 +1031,7 @@
     "files": [
       "**/*.md",
     ],
-    "name": "antfu/markdown/disables/markdown",
+    "name": "setemiojo/markdown/disables/markdown",
     "rules": [
       "- command/command",
       "- no-irregular-whitespace",
@@ -959,9 +1056,8 @@
         },
       },
     },
-    "name": "antfu/markdown/disables/code",
+    "name": "setemiojo/markdown/disables/code",
     "rules": [
-      "- antfu/no-top-level-await",
       "- e18e/prefer-static-regex",
       "- no-alert",
       "- no-console",
@@ -973,6 +1069,7 @@
       "- no-unused-labels",
       "- no-unused-vars",
       "- node/prefer-global/process",
+      "- setemiojo/no-top-level-await",
       "- style/comma-dangle",
       "- style/eol-last",
       "- style/padding-line-between-statements",
@@ -993,10 +1090,10 @@
     "files": [
       "**/scripts/**/*.?([cm])[jt]s?(x)",
     ],
-    "name": "antfu/disables/scripts",
+    "name": "setemiojo/disables/scripts",
     "rules": [
-      "- antfu/no-top-level-await",
       "- no-console",
+      "- setemiojo/no-top-level-await",
       "- ts/explicit-function-return-type",
     ],
   },
@@ -1005,10 +1102,10 @@
       "**/cli/**/*.?([cm])[jt]s?(x)",
       "**/cli.?([cm])[jt]s?(x)",
     ],
-    "name": "antfu/disables/cli",
+    "name": "setemiojo/disables/cli",
     "rules": [
-      "- antfu/no-top-level-await",
       "- no-console",
+      "- setemiojo/no-top-level-await",
     ],
   },
   {
@@ -1016,17 +1113,17 @@
       "**/bin/**/*",
       "**/bin.?([cm])[jt]s?(x)",
     ],
-    "name": "antfu/disables/bin",
+    "name": "setemiojo/disables/bin",
     "rules": [
-      "- antfu/no-import-dist",
-      "- antfu/no-import-node-modules-by-path",
+      "- setemiojo/no-import-dist",
+      "- setemiojo/no-import-node-modules-by-path",
     ],
   },
   {
     "files": [
       "**/*.d.?([cm])ts",
     ],
-    "name": "antfu/disables/dts",
+    "name": "setemiojo/disables/dts",
     "rules": [
       "- eslint-comments/no-unlimited-disable",
       "- no-restricted-syntax",
@@ -1038,7 +1135,7 @@
       "**/*.js",
       "**/*.cjs",
     ],
-    "name": "antfu/disables/cjs",
+    "name": "setemiojo/disables/cjs",
     "rules": [
       "- ts/no-require-imports",
     ],
@@ -1048,10 +1145,10 @@
       "**/*.config.?([cm])[jt]s?(x)",
       "**/*.config.*.?([cm])[jt]s?(x)",
     ],
-    "name": "antfu/disables/config-files",
+    "name": "setemiojo/disables/config-files",
     "rules": [
-      "- antfu/no-top-level-await",
       "- no-console",
+      "- setemiojo/no-top-level-await",
       "- ts/explicit-function-return-type",
     ],
   },
