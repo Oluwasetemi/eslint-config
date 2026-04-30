@@ -39,6 +39,7 @@
       "src/typegen.d.ts",
       "**/.eslint-config-inspector",
       "**/.claude",
+      "**/docs",
     ],
     "name": "setemiojo/gitignore",
   },
@@ -100,6 +101,9 @@
     "name": "setemiojo/javascript/setup",
   },
   {
+    "ignores": [
+      "**/*.md",
+    ],
     "name": "setemiojo/javascript/rules",
     "plugins": [
       "antfu",
@@ -217,6 +221,9 @@
     ],
   },
   {
+    "ignores": [
+      "**/*.md",
+    ],
     "name": "setemiojo/eslint-comments/rules",
     "plugins": [
       "eslint-comments",
@@ -229,6 +236,9 @@
     ],
   },
   {
+    "ignores": [
+      "**/*.md",
+    ],
     "name": "setemiojo/command/rules",
     "plugins": [
       "command",
@@ -238,6 +248,9 @@
     ],
   },
   {
+    "ignores": [
+      "**/*.md",
+    ],
     "name": "setemiojo/perfectionist/setup",
     "plugins": [
       "perfectionist",
@@ -303,6 +316,9 @@
     ],
   },
   {
+    "ignores": [
+      "**/*.md",
+    ],
     "name": "setemiojo/imports/rules",
     "plugins": [
       "import",
@@ -321,6 +337,9 @@
     ],
   },
   {
+    "ignores": [
+      "**/*.md",
+    ],
     "name": "setemiojo/e18e/rules",
     "plugins": [
       "e18e",
@@ -345,6 +364,9 @@
     ],
   },
   {
+    "ignores": [
+      "**/*.md",
+    ],
     "name": "setemiojo/unicorn/rules",
     "plugins": [
       "unicorn",
@@ -481,6 +503,9 @@
     ],
   },
   {
+    "ignores": [
+      "**/*.md",
+    ],
     "name": "setemiojo/stylistic/rules",
     "plugins": [
       "setemiojo",
@@ -558,6 +583,9 @@
     ],
   },
   {
+    "ignores": [
+      "**/*.md",
+    ],
     "name": "setemiojo/regexp/rules",
     "plugins": [
       "regexp",
@@ -1091,23 +1119,6 @@
       "markdown/no-unused-definitions",
       "markdown/require-alt-text",
       "markdown/table-column-count",
-    ],
-  },
-  {
-    "files": [
-      "**/*.md",
-    ],
-    "name": "setemiojo/markdown/disables/markdown",
-    "rules": [
-      "- command/command",
-      "- no-irregular-whitespace",
-      "- perfectionist/sort-exports",
-      "- perfectionist/sort-imports",
-      "- regexp/no-legacy-features",
-      "- regexp/no-missing-g-flag",
-      "- regexp/no-useless-dollar-replacements",
-      "- regexp/no-useless-flag",
-      "- style/indent",
     ],
   },
   {
