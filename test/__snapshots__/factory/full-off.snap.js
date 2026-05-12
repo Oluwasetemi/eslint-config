@@ -197,18 +197,6 @@
     ],
   },
   {
-    "name": "setemiojo/perfectionist/setup",
-    "plugins": [
-      "perfectionist",
-    ],
-    "rules": [
-      "perfectionist/sort-exports",
-      "perfectionist/sort-imports",
-      "perfectionist/sort-named-exports",
-      "perfectionist/sort-named-imports",
-    ],
-  },
-  {
     "name": "setemiojo/e18e/rules",
     "plugins": [
       "e18e",
