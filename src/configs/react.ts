@@ -1,4 +1,3 @@
-/* eslint-disable perfectionist/sort-objects */
 import type { OptionsFiles, OptionsReact, OptionsTypeScriptParserOptions, OptionsTypeScriptWithTypes, TypedFlatConfigItem } from '../types'
 
 import { isPackageExists } from 'local-pkg'
@@ -21,12 +20,6 @@ const ReactRouterPackages = [
   '@react-router/react',
   '@react-router/serve',
   '@react-router/dev',
-]
-
-// add @tanstack/react-router @tanstack/start
-const TanstackPackages = [
-  '@tanstack/react-router',
-  '@tanstack/start',
 ]
 
 const NextJsPackages = [
@@ -70,7 +63,7 @@ export async function react(
   const isUsingRemix = RemixPackages.some(i => isPackageExists(i))
   const isUsingReactRouter = ReactRouterPackages.some(i => isPackageExists(i))
   const isUsingNext = NextJsPackages.some(i => isPackageExists(i))
-  const isUsingTanstack = TanstackPackages.some(i => isPackageExists(i))
+  const isUsingTanstack = ['@tanstack/react-router', '@tanstack/start'].some(i => isPackageExists(i))
 
   const plugins = pluginReact.configs.all.plugins!
 
@@ -79,11 +72,7 @@ export async function react(
       name: 'setemiojo/react/setup',
       plugins: {
         'react': plugins['@eslint-react'],
-        'react-dom': plugins['@eslint-react/dom'],
-        'react-naming-convention': plugins['@eslint-react/naming-convention'],
         'react-refresh': pluginReactRefresh,
-        'react-rsc': plugins['@eslint-react/rsc'],
-        'react-web-api': plugins['@eslint-react/web-api'],
       },
     },
     {
@@ -99,8 +88,6 @@ export async function react(
       name: 'setemiojo/react/rules',
       rules: {
         ...pluginReact.configs.recommended.rules,
-
-        'react/prefer-namespace-import': 'error',
 
         // preconfigured rules from eslint-plugin-react-refresh https://github.com/ArnaudBarre/eslint-plugin-react-refresh/tree/main/src
         'react-refresh/only-export-components': [
@@ -189,8 +176,8 @@ export async function react(
       name: 'setemiojo/react/typescript',
       rules: {
         // Disables rules that are already handled by TypeScript
-        'react-dom/no-string-style-prop': 'off',
-        'react-dom/no-unknown-property': 'off',
+        'react/dom-no-string-style-prop': 'off',
+        'react/dom-no-unknown-property': 'off',
       },
     },
     ...isTypeAware
