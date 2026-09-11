@@ -2,37 +2,33 @@
 
 [![npm](https://img.shields.io/npm/v/@setemiojo/eslint-config?color=444&label=)](https://npmjs.com/package/@setemiojo/eslint-config)
 
-> Forked from [@antfu/eslint-config](https://github.com/antfu/eslint-config)
+> Based on [@antfu/eslint-config](https://github.com/antfu/eslint-config). This fork tracks upstream while preserving its own package namespace and TanStack Router integration.
 
 - Auto fix for formatting (aimed to be used standalone **without** Prettier)
 - Reasonable defaults, best practices, only one line of config
-- Designed to work with TypeScript, JSX, Vue, JSON, YAML, Toml, Markdown, etc. Out-of-box.
+- Designed to work with TypeScript, JSX, Vue, JSON, YAML, TOML, Markdown, etc. out of the box
 - Opinionated, but [very customizable](#customization)
 - [ESLint Flat config](https://eslint.org/docs/latest/use/configure/configuration-files-new), compose easily!
-- Optional [React](#react) (with auto-detection for TanStack Router, React Router v7, Remix), [Next.js](#nextjs), [Svelte](#svelte), [UnoCSS](#unocss), [Astro](#astro), [Solid](#solid) support
+- Optional [React](#react) (with auto-detection for TanStack Router, React Router v7, and Remix), [TanStack Router](#tanstack-router), [Next.js](#nextjs), [Svelte](#svelte), [UnoCSS](#unocss), [Astro](#astro), and [Solid](#solid) support
 - Optional [formatters](#formatters) support for formatting CSS, HTML, XML, etc.
 - **Style principle**: Minimal for reading, stable for diff, consistent
   - Sorted imports, dangling commas
   - Single quotes, no semi
   - Using [ESLint Stylistic](https://github.com/eslint-stylistic/eslint-stylistic)
 - Respects `.gitignore` by default
-- Requires ESLint v9.5.0+
+- Requires ESLint v9.10.0+
 
 > [!WARNING]
-> I am super appreciative and even a bit flattered that so many of you are fond of using this config. For that reason, I tried to make it as flexible and customizable as possible to fit more use cases.
->
-> However, please keep in mind that this is still **_a personal config_** with a lot of opinions. Changes might not always work for everyone and every use case.
->
-> If you are using this config directly, I suggest you **review the changes every time you update**. Or if you want more control over the rules, always feel free to fork it. Thanks!
+> This is a **personal, opinionated config**. Changes might not work for every project, so review the changes whenever you update. If you need complete control over the rules, consider maintaining your own fork.
 
 > [!TIP]
-> If you are interested in the tooling and the philosophy behind this config, I gave a talk about ESLint flat config at [JSNation 2024 - ESLint One for All Made Easy](https://gitnation.com/contents/eslint-one-for-all-made-easy), slides are [here](https://talks.antfu.me/2024/jsnation).
+> For more about the tooling and philosophy behind the upstream config, see Anthony Fu's talk [JSNation 2024 - ESLint One for All Made Easy](https://gitnation.com/contents/eslint-one-for-all-made-easy) and the accompanying [slides](https://talks.antfu.me/2024/jsnation).
 
 ## Usage
 
 ### Starter Wizard
 
-We provided a CLI tool to help you set up your project, or migrate from the legacy config to the new flat config with one command.
+This package provides a CLI tool to help you set up your project or migrate from a legacy config to the new flat config with one command.
 
 ```bash
 pnpm dlx @setemiojo/eslint-config@latest
@@ -80,7 +76,7 @@ export default setemiojo(
       'eslint:recommended',
       // Other extends...
     ],
-  })
+  }),
 
   // Other flat configs...
 )
@@ -320,7 +316,7 @@ lspconfig.eslint.setup({
 
 ## Customization
 
-Since v1.0, we migrated to [ESLint Flat config](https://eslint.org/docs/latest/use/configure/configuration-files-new). It provides much better organization and composition.
+Since v1.0, this config has used [ESLint Flat config](https://eslint.org/docs/latest/use/configure/configuration-files-new), which provides better organization and composition.
 
 Normally you only need to import the `setemiojo` preset:
 
@@ -384,7 +380,7 @@ import setemiojo from '@setemiojo/eslint-config'
 
 export default setemiojo(
   {
-    // Configures for setemiojo's config
+    // Configure this preset
   },
 
   // From the second arguments they are ESLint Flat Configs
@@ -404,7 +400,7 @@ Going more advanced, you can also import fine-grained configs and compose them a
 <details>
 <summary>Advanced Example</summary>
 
-We wouldn't recommend using this style in general unless you know exactly what they are doing, as there are shared options between configs and might need extra care to make them consistent.
+This style is not recommended unless you understand how the shared options interact, as extra care may be needed to keep the individual configs consistent.
 
 ```js
 // eslint.config.js
@@ -454,7 +450,7 @@ Check out the [configs](https://github.com/oluwasetemi/eslint-config/blob/main/s
 
 ### Plugins Renaming
 
-Since flat config requires us to explicitly provide the plugin names (instead of the mandatory convention from npm package name), we renamed some plugins to make the overall scope more consistent and easier to write.
+Flat config requires plugin names to be provided explicitly instead of deriving them from npm package names. This preset renames some plugins to make the overall scope more consistent and easier to write.
 
 | New Prefix | Original Prefix        | Source Plugin                                                                                         |
 | ---------- | ---------------------- | ----------------------------------------------------------------------------------------------------- |
@@ -476,13 +472,13 @@ type foo = { bar: 2 }
 ```
 
 > [!NOTE]
-> About plugin renaming - it is actually rather a dangerous move that might lead to potential naming collisions, pointed out [here](https://github.com/eslint/eslint/discussions/17766) and [here](https://github.com/prettier/eslint-config-prettier#eslintconfigjs-flat-config-plugin-caveat). As this config also very **personal** and **opinionated**, I ambitiously position this config as the only **"top-level"** config per project, that might pivots the taste of how rules are named.
+> Plugin renaming can lead to naming collisions, as discussed [here](https://github.com/eslint/eslint/discussions/17766) and [here](https://github.com/prettier/eslint-config-prettier#eslintconfigjs-flat-config-plugin-caveat). This personal, opinionated preset is intended to be the only **"top-level"** config in a project.
 >
-> This config cares more about the user-facings DX, and try to ease out the implementation details. For example, users could keep using the semantic `import/order` without ever knowing the underlying plugin has migrated twice to `eslint-plugin-i` and then to `eslint-plugin-import-x`. User are also not forced to migrate to the implicit `i/order` halfway only because we swapped the implementation to a fork.
+> The renaming prioritizes user-facing DX over implementation details. For example, users can keep using the semantic `import/order` even if the underlying plugin implementation changes.
 >
 > That said, it's probably still not a good idea. You might not want to do this if you are maintaining your own eslint config.
 >
-> Feel free to open issues if you want to combine this config with some other config presets but faced naming collisions. I am happy to figure out a way to make them work. But at this moment I have no plan to revert the renaming.
+> Open an issue if combining this preset with another config causes naming collisions. There are currently no plans to revert the renaming.
 
 Since v2.9.0, this preset will automatically rename the plugins also for your custom configs. You can use the original prefix to override the rules directly.
 
@@ -498,7 +494,7 @@ export default setemiojo()
   .renamePlugins({
     ts: '@typescript-eslint',
     yaml: 'yml',
-    node: 'n'
+    node: 'n',
     // ...
   })
 ```
@@ -537,7 +533,7 @@ export default setemiojo(
 > [!NOTE]
 > Rule overrides without an explicit `files` constraint are automatically excluded from Markdown files, via [`composer.setDefaultIgnores`](https://github.com/antfu/eslint-flat-config-utils#composersetdefaultignores). This prevents JS-only rules (e.g. `no-irregular-whitespace`, `perfectionist/sort-imports`) from crashing on `@eslint/markdown`'s `SourceCode`, which doesn't expose JS-specific methods like `getAllComments()`. If you want a rule to apply to Markdown, scope it explicitly with `files: ['**/*.md']`.
 
-We also provided the `overrides` options in each integration to make it easier:
+Each integration also provides an `overrides` option:
 
 ```js
 // eslint.config.js
@@ -610,7 +606,7 @@ export default setemiojo({
 
 #### Vue 2
 
-We have limited support for Vue 2 (as it's already [reached EOL](https://v2.vuejs.org/eol/)). If you are still using Vue 2, you can configure it manually by setting `vueVersion` to `2`:
+This package has limited support for Vue 2 (as it has already [reached EOL](https://v2.vuejs.org/eol/)). If you are still using Vue 2, you can configure it manually by setting `vueVersion` to `2`:
 
 ```js
 // eslint.config.js
@@ -623,7 +619,7 @@ export default setemiojo({
 })
 ```
 
-As it's in maintenance mode, we only accept bug fixes for Vue 2. It might also be removed in the future when `eslint-plugin-vue` drops support for Vue 2. We recommend upgrading to Vue 3 if possible.
+As Vue 2 is in maintenance mode, only bug fixes are accepted for this integration. Support may be removed when `eslint-plugin-vue` drops Vue 2. Upgrading to Vue 3 is recommended where possible.
 
 #### Vue Accessibility
 
@@ -648,7 +644,7 @@ npm i -D eslint-plugin-vuejs-accessibility
 
 ### Optional Configs
 
-We provide some optional configs for specific use cases, that we don't include their dependencies by default.
+This package provides optional configs for specific use cases. Their dependencies are not installed by default.
 
 #### Formatters
 
@@ -853,7 +849,7 @@ npm i -D @angular-eslint/eslint-plugin @angular-eslint/eslint-plugin-template @a
 #### Anti-Slop
 
 > [!WARNING]
-> Experimental: the enabled rule set is maintained in-house and may change in any release without following semver.
+> Experimental: the enabled rule set follows upstream and may change in any release without following semver.
 
 To guard against low-value code patterns commonly introduced by AI agents, you can explicitly turn on the anti-slop rules:
 
@@ -866,7 +862,7 @@ export default setemiojo({
 })
 ```
 
-This enables [`eslint-plugin-slop`](https://github.com/antfu/eslint-plugin-slop) and a curated, in-house maintained subset of [`eslint-plugin-sonarjs`](https://github.com/SonarSource/SonarJS) rules focusing on redundant and duplicated code. It also disallows explicit `any` when TypeScript is enabled (inspired by [this writeup on keeping AI-authored code clean](https://zenn.dev/singularity/articles/clean-code-ci-for-ai-era)).
+This enables [`eslint-plugin-slop`](https://github.com/antfu/eslint-plugin-slop) and the curated subset of [`eslint-plugin-sonarjs`](https://github.com/SonarSource/SonarJS) rules inherited from upstream, focusing on redundant and duplicated code. It also disallows explicit `any` when TypeScript is enabled (inspired by [this writeup on keeping AI-authored code clean](https://zenn.dev/singularity/articles/clean-code-ci-for-ai-era)).
 
 You can toggle each plugin and pass options to `eslint-plugin-slop`:
 
@@ -951,7 +947,7 @@ export default setemiojo({
 
 ### Prettier
 
-If you're using prettier outside eslint, you can disable the config via etc:
+If you use Prettier separately from ESLint, append `eslint-config-prettier` to disable conflicting formatting rules:
 
 ```js
 import setemiojo from '@setemiojo/eslint-config'
@@ -1014,7 +1010,7 @@ npx simple-git-hooks
 
 ## View what rules are enabled
 
-I built a visual tool to help you view what rules are enabled in your project and apply them to what files, [@eslint/config-inspector](https://github.com/eslint/config-inspector)
+Use Anthony Fu's [@eslint/config-inspector](https://github.com/eslint/config-inspector) to see which rules are enabled and which files they apply to.
 
 Go to your project root that contains `eslint.config.js` and run:
 
@@ -1039,33 +1035,23 @@ This project follows [Semantic Versioning](https://semver.org/) for releases. Ho
 - Rules options changes
 - Version bumps of dependencies
 
-## Badge
-
-If you enjoy this code style, and would like to mention it in your project, here is the badge you can use:
-
-```md
-<!-- [![code style](https://setemiojo.me/badge-code-style.svg)](https://github.com/setemiojo/eslint-config) -->
-```
-
-<!-- [![code style](https://setemiojo.me/badge-code-style.svg)](https://github.com/setemiojo/eslint-config) -->
-
 ## FAQ
 
 ### Prettier?
 
-[Why I don't use Prettier](https://antfu.me/posts/why-not-prettier)
+See Anthony Fu's explanation of [why the upstream config does not use Prettier](https://antfu.me/posts/why-not-prettier).
 
 Well, you can still use Prettier to format files that are not supported well by ESLint yet, such as `.css`, `.html`, etc. See [formatters](#formatters) for more details.
 
 ### oxlint?
 
-We do have a plan to integrate [oxlint](https://github.com/oxc-project/oxc) in someway to speed up the linting process. However there are still some blocks we are waiting for. Track the progress [in this issue: **Oxlint Integration Plan**](https://github.com/antfu/eslint-config/issues/767).
+The upstream project has a plan to integrate [oxlint](https://github.com/oxc-project/oxc) to improve linting performance. Track progress in [Oxlint Integration Plan](https://github.com/antfu/eslint-config/issues/767).
 
 ### dprint?
 
-[dprint](https://dprint.dev/) is also a great formatter that with more abilities to customize. However, it's in the same model as Prettier which reads the AST and reprints the code from scratch. This means it's similar to Prettier, which ignores the original line breaks and might also cause the inconsistent diff. So in general, we prefer to use ESLint to format and lint JavaScript/TypeScript code.
+[dprint](https://dprint.dev/) is a customizable formatter, but it follows the same general model as Prettier: it reads the AST and reprints the code from scratch. This can discard original line breaks and create inconsistent diffs, so this preset uses ESLint to format and lint JavaScript and TypeScript.
 
-Meanwhile, we do have dprint integrations for formatting other files such as `.md`. See [formatters](#formatters) for more details.
+The formatter integration can use dprint for other files such as `.md`. See [formatters](#formatters) for more details.
 
 ### How to format CSS?
 
@@ -1073,9 +1059,7 @@ You can opt-in to the [`formatters`](#formatters) feature to format your CSS. No
 
 ### Top-level Function Style, etc.
 
-I am a very opinionated person, so as this config. I prefer the top-level functions always using the function declaration over arrow functions; I prefer one-line if statements without braces and always wraps, and so on. I even wrote some custom rules to enforce them.
-
-I know they are not necessarily the popular opinions. If you really want to get rid of them, you can disable them with:
+This config intentionally prefers function declarations for top-level functions, one-line `if` statements without braces, and other opinionated conventions. If those choices do not suit your project, disable them with:
 
 ```ts
 import setemiojo from '@setemiojo/eslint-config'
@@ -1098,4 +1082,4 @@ Sure, you can configure and override rules locally in your project to fit your n
 
 ## License
 
-[MIT](./LICENSE) License &copy; 2025-PRESENT [Oluwasetemi Ojo](https://github.com/oluwasetemi)
+[MIT](./LICENSE) License. Original work &copy; 2019-PRESENT [Anthony Fu](https://github.com/antfu); fork modifications &copy; 2025-PRESENT [Oluwasetemi Ojo](https://github.com/oluwasetemi).
