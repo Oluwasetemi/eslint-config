@@ -22,7 +22,7 @@ export async function jsonc(
     {
       name: 'setemiojo/jsonc/setup',
       plugins: {
-        jsonc: pluginJsonc as any,
+        jsonc: pluginJsonc,
       },
     },
     {

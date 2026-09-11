@@ -178,6 +178,7 @@ Add the following settings to your `.zed/settings.json`:
 
 ```jsonc
 {
+  "format_on_save": "on",
   // Use ESLint's --fix:
   "code_actions_on_format": {
     "source.fixAll.eslint": true
@@ -340,25 +341,28 @@ export default setemiojo({
   // Type of the project. 'lib' for libraries, the default is 'app'
   type: 'lib',
 
-  // `.eslintignore` is no longer supported in Flat config, use `ignores` instead
-  // The `ignores` option in the option (first argument) is specifically treated to always be global ignores
-  // And will **extend** the config's default ignores, not override them
-  // You can also pass a function to modify the default ignores
+  /**
+   * `.eslintignore` is no longer supported in Flat config, use `ignores` instead
+   * The `ignores` option in the option (first argument) is specifically treated to always be global ignores
+   * And will **extend** the config's default ignores, not override them
+   * You can also pass a function to modify the default ignores
+   */
   ignores: [
     '**/fixtures',
     // ...globs
   ],
 
-  // Parse the `.gitignore` file to get the ignores, on by default
+  /** Parse the `.gitignore` file to get the ignores, on by default */
   gitignore: true,
 
   // Enable stylistic formatting rules
   // stylistic: true,
 
-  // Or customize the stylistic rules
+  /** Or customize the stylistic rules */
   stylistic: {
     indent: 2, // 4, or 'tab'
     quotes: 'single', // or 'double'
+    braceStyle: 'stroustrup', // '1tbs', or 'allman'
   },
 
   // TypeScript, Vue, and React are autodetected, you can also explicitly enable them:
@@ -366,7 +370,7 @@ export default setemiojo({
   vue: true,
   react: true,
 
-  // Disable jsonc and yaml support
+  /** Disable jsonc and yaml support */
   jsonc: false,
   yaml: false,
 })
@@ -515,20 +519,23 @@ export default setemiojo(
     typescript: true
   },
   {
-    // Remember to specify the file glob here, otherwise it might cause the vue plugin to handle non-vue files
+    /** Remember to specify the file glob here, otherwise it might cause the vue plugin to handle non-vue files */
     files: ['**/*.vue'],
     rules: {
       'vue/operator-linebreak': ['error', 'before'],
     },
   },
   {
-    // Without `files`, they are general rules for all files
+    /** Without `files`, they are general rules for all files (Markdown excluded, see note below) */
     rules: {
       'style/semi': ['error', 'never'],
     },
   }
 )
 ```
+
+> [!NOTE]
+> Rule overrides without an explicit `files` constraint are automatically excluded from Markdown files, via [`composer.setDefaultIgnores`](https://github.com/antfu/eslint-flat-config-utils#composersetdefaultignores). This prevents JS-only rules (e.g. `no-irregular-whitespace`, `perfectionist/sort-imports`) from crashing on `@eslint/markdown`'s `SourceCode`, which doesn't expose JS-specific methods like `getAllComments()`. If you want a rule to apply to Markdown, scope it explicitly with `files: ['**/*.md']`.
 
 We also provided the `overrides` options in each integration to make it easier:
 
@@ -546,6 +553,10 @@ export default setemiojo({
     overrides: {
       'ts/consistent-type-definitions': ['error', 'interface'],
     },
+    /** type aware rules overrides should write here */
+    overridesTypeAware: {
+      'ts/no-unsafe-assignment': ['warn'],
+    }
   },
   yaml: {
     overrides: {
@@ -706,11 +717,24 @@ Running `npx eslint` should prompt you to install the required dependencies, oth
 npm i -D @eslint-react/eslint-plugin eslint-plugin-react-refresh
 ```
 
-> [!NOTE]
-> This config uses `eslint-plugin-react-hooks` version 7.0.0+ which includes enhanced React Compiler support and new rules for better React development practices, including:
->
-> - `react-hooks/component-hook-factories`: Prevents factory functions for components and hooks
-> - `react-hooks/use-memo`: Ensures proper useMemo usage
+#### TanStack Router
+
+React support detects TanStack Router and TanStack Start automatically. To also enable the dedicated TanStack Router lint rules, turn on `tanstackRouter`:
+
+```js
+// eslint.config.js
+import setemiojo from '@setemiojo/eslint-config'
+
+export default setemiojo({
+  tanstackRouter: true,
+})
+```
+
+Running `npx eslint` should prompt you to install the required dependency, otherwise, you can install it manually:
+
+```bash
+npm i -D @tanstack/eslint-plugin-router
+```
 
 #### Next.js
 
@@ -813,9 +837,9 @@ To enable Angular support, you need to explicitly turn it on:
 
 ```js
 // eslint.config.js
-import antfu from '@antfu/eslint-config'
+import setemiojo from '@setemiojo/eslint-config'
 
-export default antfu({
+export default setemiojo({
   angular: true,
 })
 ```
@@ -825,6 +849,52 @@ Running `npx eslint` should prompt you to install the required dependencies, oth
 ```bash
 npm i -D @angular-eslint/eslint-plugin @angular-eslint/eslint-plugin-template @angular-eslint/template-parser
 ```
+
+#### Anti-Slop
+
+> [!WARNING]
+> Experimental: the enabled rule set is maintained in-house and may change in any release without following semver.
+
+To guard against low-value code patterns commonly introduced by AI agents, you can explicitly turn on the anti-slop rules:
+
+```js
+// eslint.config.js
+import setemiojo from '@setemiojo/eslint-config'
+
+export default setemiojo({
+  antislop: true,
+})
+```
+
+This enables [`eslint-plugin-slop`](https://github.com/antfu/eslint-plugin-slop) and a curated, in-house maintained subset of [`eslint-plugin-sonarjs`](https://github.com/SonarSource/SonarJS) rules focusing on redundant and duplicated code. It also disallows explicit `any` when TypeScript is enabled (inspired by [this writeup on keeping AI-authored code clean](https://zenn.dev/singularity/articles/clean-code-ci-for-ai-era)).
+
+You can toggle each plugin and pass options to `eslint-plugin-slop`:
+
+```js
+// eslint.config.js
+import setemiojo from '@setemiojo/eslint-config'
+
+export default setemiojo({
+  antislop: {
+    sonarjs: false,
+    /**
+     * an object enables `eslint-plugin-slop` and is forwarded to it
+     * via `settings.slop`, for example to only inspect recently changed code
+     */
+    slop: {
+      inspection: { mode: 'recent-changes', tracebackCommits: 5 },
+    },
+  },
+})
+```
+
+Running `npx eslint` should prompt you to install the required dependencies, otherwise, you can install them manually:
+
+```bash
+npm i -D eslint-plugin-slop eslint-plugin-sonarjs
+```
+
+Since linters only see one file at a time, we recommend pairing this option with [`jscpd`](https://github.com/kucherenko/jscpd) to detect copy-paste duplication across files, and [`knip`](https://knip.dev) to find unused files, dependencies, and exports.
 
 ### Optional Rules
 
@@ -877,6 +947,21 @@ export default setemiojo({
     tsconfigPath: 'tsconfig.json',
   },
 })
+```
+
+### Prettier
+
+If you're using prettier outside eslint, you can disable the config via etc:
+
+```js
+import setemiojo from '@setemiojo/eslint-config'
+import prettierConflicts from 'eslint-config-prettier'
+
+export default setemiojo({
+  rules: {
+    'some-rule': 'off'
+  }
+}, prettierConflicts)
 ```
 
 ### Editor Specific Disables

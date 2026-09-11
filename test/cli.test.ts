@@ -3,7 +3,7 @@ import { join } from 'node:path'
 import process from 'node:process'
 
 import { fileURLToPath } from 'node:url'
-import { execa } from 'execa'
+import { x } from 'tinyexec'
 
 import { afterAll, beforeEach, expect, it } from 'vitest'
 
@@ -18,11 +18,14 @@ async function run(params: string[] = [], env = {
   SKIP_PROMPT: '1',
   NO_COLOR: '1',
 }) {
-  return execa('node', [CLI_PATH, ...params], {
-    cwd: genPath,
-    env: {
-      ...process.env,
-      ...env,
+  return x('node', [CLI_PATH, ...params], {
+    throwOnError: true,
+    nodeOptions: {
+      cwd: genPath,
+      env: {
+        ...process.env,
+        ...env,
+      },
     },
   })
 };
@@ -61,6 +64,16 @@ it('esm eslint.config.js', async () => {
   const eslintConfigContent = await fs.readFile(join(genPath, 'eslint.config.js'), 'utf-8')
   expect(eslintConfigContent.includes('export default')).toBeTruthy()
   expect(stdout).toContain('Created eslint.config.js')
+})
+
+it('tanstack template uses the public option name', async () => {
+  await run(['--yes', '--template', 'tanstack'])
+
+  const eslintConfigContent = await fs.readFile(join(genPath, 'eslint.config.mjs'), 'utf-8')
+  const pkgContent = JSON.parse(await fs.readFile(join(genPath, 'package.json'), 'utf-8'))
+
+  expect(eslintConfigContent).toContain('tanstackRouter: true')
+  expect(pkgContent.devDependencies).toHaveProperty('@tanstack/eslint-plugin-router')
 })
 
 it('ignores files added in eslint.config.js', async () => {

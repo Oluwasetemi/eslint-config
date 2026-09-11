@@ -7,6 +7,7 @@ import { findUpSync } from 'find-up-simple'
 import { isPackageExists } from 'local-pkg'
 import {
   angular,
+  antislop,
   astro,
   command,
   comments,
@@ -69,10 +70,6 @@ const ReactPackages = [
 
 export const defaultPluginRenaming = {
   '@eslint-react': 'react',
-  '@eslint-react/dom': 'react-dom',
-  '@eslint-react/naming-convention': 'react-naming-convention',
-  '@eslint-react/rsc': 'react-rsc',
-  '@eslint-react/web-api': 'react-web-api',
 
   '@next/next': 'next',
   '@stylistic': 'style',
@@ -94,12 +91,14 @@ export const defaultPluginRenaming = {
  * @returns {Promise<TypedFlatConfigItem[]>}
  *  The merged ESLint configurations.
  */
+// eslint-disable-next-line sonarjs/cognitive-complexity
 export function setemiojo(
   options: OptionsConfig & Omit<TypedFlatConfigItem, 'files' | 'ignores'> = {},
   ...userConfigs: Awaitable<TypedFlatConfigItem | TypedFlatConfigItem[] | FlatConfigComposer<any, any> | Linter.Config[]>[]
 ): FlatConfigComposer<TypedFlatConfigItem, ConfigNames> {
   const {
     angular: enableAngular = false,
+    antislop: enableAntislop = false,
     astro: enableAstro = false,
     autoRenamePlugins = true,
     componentExts = [],
@@ -171,7 +170,6 @@ export function setemiojo(
     }),
     comments(),
     command(),
-
   )
 
   if (enablePerfectionist) {
@@ -241,6 +239,17 @@ export function setemiojo(
     )
   }
 
+  // Registered after the TypeScript config so its `ts/no-explicit-any` override takes effect
+  if (enableAntislop) {
+    configs.push(
+      antislop({
+        ...resolveSubOptions(options, 'antislop'),
+        overrides: getOverrides(options, 'antislop'),
+        typescript: !!enableTypeScript,
+      }),
+    )
+  }
+
   if (stylisticOptions) {
     configs.push(
       stylistic({
@@ -288,8 +297,7 @@ export function setemiojo(
     )
   }
 
-  // Add TanStack Router if React is enabled and TanStack Router is detected
-  if (enableReact && enableTanstackRouter && isPackageExists('@tanstack/react-router')) {
+  if (enableTanstackRouter) {
     configs.push(tanstackRouter({
       ...typescriptOptions,
       overrides: getOverrides(options, 'tanstackRouter'),
@@ -366,6 +374,7 @@ export function setemiojo(
       pnpm({
         isInEditor,
         json: options.jsonc !== false,
+        stylistic: stylisticOptions,
         yaml: options.yaml !== false,
         ...optionsPnpm,
       }),
@@ -420,6 +429,7 @@ export function setemiojo(
   // We pick the known keys as ESLint would do schema validation
   const fusedConfig = flatConfigProps.reduce((acc, key) => {
     if (key in options)
+
       acc[key] = options[key] as any
     return acc
   }, {} as TypedFlatConfigItem)
@@ -431,6 +441,7 @@ export function setemiojo(
   composer = composer
     .append(
       ...configs,
+
       ...userConfigs as any,
     )
 
@@ -480,7 +491,7 @@ export function getOverrides<K extends keyof OptionsConfig>(
 ): Partial<Linter.RulesRecord & RuleOptions> {
   const sub = resolveSubOptions(options, key)
   return {
-    ...(options.overrides as any)?.[key],
+    ...(options.overrides as Record<string, TypedFlatConfigItem['rules']> | undefined)?.[key],
     ...'overrides' in sub
       ? sub.overrides
       : {},

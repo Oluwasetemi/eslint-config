@@ -2,7 +2,7 @@ import type { OptionsConfig, TypedFlatConfigItem } from '../src/types'
 
 import fs from 'node:fs/promises'
 import { join, resolve } from 'node:path'
-import { execa } from 'execa'
+import { x } from 'tinyexec'
 import { glob } from 'tinyglobby'
 
 import { afterAll, beforeAll, it } from 'vitest'
@@ -116,6 +116,20 @@ runWithConfig(
   },
 )
 
+// https://github.com/antfu/eslint-config/issues/837
+runWithConfig(
+  'issue-837',
+  {
+    typescript: false,
+    vue: false,
+  },
+  {
+    rules: {
+      'no-irregular-whitespace': ['warn', { skipStrings: true, skipTemplates: true }],
+    },
+  },
+)
+
 function runWithConfig(name: string, configs: OptionsConfig, ...items: TypedFlatConfigItem[]) {
   it.concurrent(name, async ({ expect }) => {
     const from = resolve('fixtures/input')
@@ -138,9 +152,12 @@ export default setemiojo(
 )
   `)
 
-    await execa('npx', ['eslint', '.', '--fix'], {
-      cwd: target,
-      stdio: 'pipe',
+    await x('npx', ['eslint', '.', '--fix'], {
+      throwOnError: true,
+      nodeOptions: {
+        cwd: target,
+        stdio: 'pipe',
+      },
     })
 
     const files = await glob('**/*', {

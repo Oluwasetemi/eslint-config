@@ -41,7 +41,7 @@ export async function javascript(
     {
       name: 'setemiojo/javascript/rules',
       plugins: {
-        'antfu': pluginAntfu,
+        'setemiojo': pluginAntfu,
         'unused-imports': pluginUnusedImports,
       },
       rules: {

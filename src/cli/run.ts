@@ -20,9 +20,9 @@ export interface CliRunOptions {
    */
   yes?: boolean
   /**
-   * Use the framework template for optimal customization: vue / react / svelte / astro
+   * Use the framework template for optimal customization.
    */
-  frameworks?: string[]
+  template?: string[]
   /**
    * Use the extra utils: formatter / perfectionist / unocss
    */
@@ -31,7 +31,7 @@ export interface CliRunOptions {
 
 export async function run(options: CliRunOptions = {}): Promise<void> {
   const argSkipPrompt = !!process.env.SKIP_PROMPT || options.yes
-  const argTemplate = <FrameworkOption[]>options.frameworks?.map(m => m?.trim()).filter(Boolean)
+  const argTemplate = <FrameworkOption[]>options.template?.map(m => m?.trim()).filter(Boolean)
   const argExtra = <ExtraLibrariesOption[]>options.extra?.map(m => m?.trim()).filter(Boolean)
 
   if (fs.existsSync(path.join(process.cwd(), 'eslint.config.js'))) {
@@ -50,7 +50,7 @@ export async function run(options: CliRunOptions = {}): Promise<void> {
   if (!argSkipPrompt) {
     result = await p.group({
       uncommittedConfirmed: () => {
-        if (argSkipPrompt || isGitClean())
+        if (isGitClean())
           return Promise.resolve(true)
 
         return p.confirm({
@@ -75,7 +75,7 @@ export async function run(options: CliRunOptions = {}): Promise<void> {
         })
       },
       extra: ({ results }) => {
-        const isArgExtraValid = argExtra?.length && !argExtra.filter(element => !extra.includes(<ExtraLibrariesOption>element)).length
+        const isArgExtraValid = argExtra?.length && argExtra.every(element => extra.includes(<ExtraLibrariesOption>element))
 
         if (!results.uncommittedConfirmed || isArgExtraValid)
           return

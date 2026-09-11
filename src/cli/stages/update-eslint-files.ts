@@ -20,7 +20,7 @@ export async function updateEslintFiles(result: PromptResult): Promise<void> {
   const pathPackageJSON = path.join(cwd, 'package.json')
 
   const pkgContent = await fsp.readFile(pathPackageJSON, 'utf-8')
-  const pkg: Record<string, any> = JSON.parse(pkgContent)
+  const pkg: { type?: string } = JSON.parse(pkgContent)
 
   const configFileName = pkg.type === 'module' ? 'eslint.config.js' : 'eslint.config.mjs'
   const pathFlatConfig = path.join(cwd, configFileName)
@@ -52,7 +52,7 @@ export async function updateEslintFiles(result: PromptResult): Promise<void> {
     configLines.push(`unocss: true,`)
 
   for (const framework of result.frameworks)
-    configLines.push(`${framework}: true,`)
+    configLines.push(`${framework === 'tanstack' ? 'tanstackRouter' : framework}: true,`)
 
   const mainConfig = configLines.map(i => `  ${i}`).join('\n')
   const additionalConfig: string[] = []

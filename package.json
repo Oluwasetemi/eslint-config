@@ -1,8 +1,8 @@
 {
   "name": "@setemiojo/eslint-config",
   "type": "module",
-  "version": "9.0.0",
-  "packageManager": "pnpm@10.33.2",
+  "version": "9.5.1",
+  "packageManager": "pnpm@11.25.0",
   "description": "Oluwasetemi's ESLint config",
   "author": "Oluwasetemi Ojo <setemiojo@gmail.com> (https://github.com/oluwasetemi/)",
   "license": "MIT",
@@ -35,7 +35,7 @@
     "build": "nr gen && tsdown --clean --dts",
     "stub": "tsdown",
     "dev": "npx @eslint/config-inspector --config eslint.config.ts",
-    "build:inspector": "pnpm build && npx @eslint/config-inspector build",
+    "build:inspector": "pnpm build && npx @eslint/config-inspector build --stats --config eslint.config.ts --out-dir ./.eslint-config-inspector",
     "watch": "tsdown --watch",
     "lint": "eslint",
     "gen": "tsx scripts/typegen.ts && tsx scripts/versiongen.ts",
@@ -43,7 +43,7 @@
     "release": "bumpp",
     "test": "vitest",
     "typecheck": "tsc --noEmit",
-    "prepare": "simple-git-hooks"
+    "prepare": "simple-git-hooks && skills-npm"
   },
   "peerDependencies": {
     "@angular-eslint/eslint-plugin": "^21.1.0",
@@ -54,13 +54,16 @@
     "@prettier/plugin-xml": "^3.4.1",
     "@tanstack/eslint-plugin-router": "^1.132.31",
     "@unocss/eslint-plugin": ">=0.50.0",
-    "astro-eslint-parser": "^1.0.2",
+    "astro-eslint-parser": ">=1.0.2",
     "eslint": "^9.10.0 || ^10.0.0",
-    "eslint-plugin-astro": "^1.2.0",
+    "eslint-plugin-astro": ">=1.2.0",
+    "eslint-plugin-erasable-syntax-only": "^0.7.1",
     "eslint-plugin-format": ">=0.1.0",
     "eslint-plugin-jsx-a11y": ">=6.10.2",
     "eslint-plugin-react-refresh": "^0.5.0",
-    "eslint-plugin-solid": "^0.14.3",
+    "eslint-plugin-slop": ">=0.1.1",
+    "eslint-plugin-solid": "^0.17.0",
+    "eslint-plugin-sonarjs": ">=4.0.0",
     "eslint-plugin-svelte": ">=2.35.1",
     "eslint-plugin-vuejs-accessibility": "^2.4.1",
     "prettier-plugin-astro": "^0.14.0",
@@ -98,6 +101,9 @@
     "eslint-plugin-astro": {
       "optional": true
     },
+    "eslint-plugin-erasable-syntax-only": {
+      "optional": true
+    },
     "eslint-plugin-format": {
       "optional": true
     },
@@ -107,7 +113,13 @@
     "eslint-plugin-react-refresh": {
       "optional": true
     },
+    "eslint-plugin-slop": {
+      "optional": true
+    },
     "eslint-plugin-solid": {
+      "optional": true
+    },
+    "eslint-plugin-sonarjs": {
       "optional": true
     },
     "eslint-plugin-svelte": {
@@ -188,11 +200,12 @@
     "eslint-plugin-format": "catalog:peer",
     "eslint-plugin-jsx-a11y": "catalog:peer",
     "eslint-plugin-react-refresh": "catalog:peer",
+    "eslint-plugin-slop": "catalog:peer",
     "eslint-plugin-solid": "catalog:peer",
+    "eslint-plugin-sonarjs": "catalog:peer",
     "eslint-plugin-svelte": "catalog:peer",
     "eslint-plugin-vuejs-accessibility": "catalog:peer",
     "eslint-typegen": "catalog:dev",
-    "execa": "catalog:dev",
     "find-up-simple": "catalog:inline",
     "jiti": "catalog:dev",
     "lint-staged": "catalog:dev",
@@ -200,10 +213,13 @@
     "prettier-plugin-astro": "catalog:peer",
     "prettier-plugin-slidev": "catalog:peer",
     "simple-git-hooks": "catalog:dev",
+    "skills-npm": "catalog:dev",
     "svelte": "catalog:peer",
     "svelte-eslint-parser": "catalog:peer",
+    "tinyexec": "catalog:dev",
     "tinyglobby": "catalog:dev",
     "tsdown": "catalog:dev",
+    "tsdown-stale-guard": "catalog:dev",
     "tsnapi": "catalog:dev",
     "tsx": "catalog:dev",
     "typescript": "catalog:dev",
@@ -227,17 +243,6 @@
     "*": "eslint --fix"
   },
   "inlinedDependencies": {
-    "@eslint-community/eslint-utils": "4.9.1",
-    "@typescript-eslint/scope-manager": "8.59.3",
-    "@typescript-eslint/types": "8.59.3",
-    "@typescript-eslint/utils": "8.59.3",
-    "@typescript-eslint/visitor-keys": "8.59.3",
-    "cached-factory": "0.2.0",
-    "eslint-plugin-erasable-syntax-only": "0.4.1",
-    "eslint-visitor-keys": [
-      "3.4.3",
-      "5.0.1"
-    ],
     "find-up-simple": "1.0.1"
   }
 }

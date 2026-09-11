@@ -14,12 +14,14 @@ export default setemiojo(
     typescript: {
       erasableOnly: true,
     },
+    antislop: true,
     markdown: {
       overrides: {
         'no-dupe-keys': 'off',
       },
     },
     formatters: true,
+    perfectionist: true,
     pnpm: true,
     type: 'lib',
     jsx: {
